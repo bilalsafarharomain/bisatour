@@ -1,231 +1,281 @@
-/* --- RESET CSS --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-html { scroll-behavior: smooth; }
+/* --- RESET & VARIABLES --- */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 :root {
-    --gold: #D4AF37;
-    --dark-gold: #b3912b;
-    --black: #1a1a1a;
-    --dark-grey: #333;
-    --light-bg: #f8f9fa;
+    --royal-gold: #D4AF37;
+    --midnight-black: #111111;
     --white: #ffffff;
+    --light-gray: #f9f9f9;
 }
 
+/* BACKGROUND UTAMA: TEKSTUR MARMER (Web Luar) */
+/* Kalau marmernya mau lokal juga, simpan gambar marmer jadi 'marble.png' di folder images */
 body {
-    background-color: var(--light-bg);
-    color: var(--dark-grey);
-    line-height: 1.6;
+    background-color: var(--light-gray);
+    color: #333;
+    background-image: url('https://www.transparenttextures.com/patterns/white-marble.png'); 
+    background-repeat: repeat;
+    background-attachment: fixed;
 }
 
-h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
-    color: var(--black);
-}
+.gold-text { color: var(--royal-gold); }
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+.container { width: 90%; max-width: 1100px; margin: auto; }
 
-.gold-text { color: var(--gold); }
-.container { width: 90%; max-width: 1200px; margin: 0 auto; }
-a { text-decoration: none; }
-ul { list-style: none; }
-
-/* --- NAVBAR --- */
+/* --- NAVBAR (TRANSPARAN + SHADOW) --- */
 .navbar {
-    background: var(--white);
-    padding: 15px 0;
-    position: sticky;
-    top: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    padding: 20px 0;
+    position: absolute; top: 0; left: 0; width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
 }
 
-.nav-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+
+/* LOGO */
+.logo img {
+    height: 110px; width: auto; display: block;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+    transition: 0.3s;
 }
 
-.logo h2 { font-size: 1.8rem; letter-spacing: 1px; }
+/* MENU LINK */
+.nav-links { display: flex; gap: 30px; list-style: none; align-items: center; }
+.nav-links a {
+    color: var(--white); text-decoration: none; font-size: 1rem; font-weight: 500; 
+    transition: 0.3s; text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+.nav-links a:hover { color: var(--royal-gold); }
 
-.nav-links { display: flex; gap: 30px; align-items: center; }
-.nav-links a { color: var(--dark-grey); font-weight: 500; transition: 0.3s; }
-.nav-links a:hover { color: var(--gold); }
-
+/* TOMBOL NAV */
 .btn-nav {
-    border: 2px solid var(--gold);
-    padding: 8px 25px;
-    border-radius: 50px;
-    color: var(--gold) !important;
-    font-weight: 600 !important;
+    border: 2px solid var(--royal-gold); padding: 10px 30px; border-radius: 50px;
+    color: var(--white) !important; font-weight: 600; background: rgba(0,0,0,0.3);
 }
-.btn-nav:hover {
-    background: var(--gold);
-    color: var(--white) !important;
-}
-
-/* Hamburger Menu (Mobile) */
-.hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--black); }
+.btn-nav:hover { background: var(--royal-gold); color: var(--midnight-black) !important; }
+.hamburger { display: none; color: var(--white); cursor: pointer; font-size: 2rem; }
 
 /* --- HERO SECTION --- */
 .hero {
-    height: 90vh;
-    background: url('https://images.unsplash.com/photo-1564769662533-4f00a87b4056?q=80&w=1920&auto=format&fit=crop'); /* Gambar Masjid */
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--white);
+    height: 100vh;
+    position: relative; display: flex; align-items: center; justify-content: center;
+    text-align: center; color: var(--white); overflow: hidden;
+}
+
+/* ANIMASI BACKGROUND KEN BURNS */
+.hero-bg-animated {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    /* Pastikan file bg-mekkah.jpg ada di folder images */
+    background: url('assets/images/bg-mekkah.jpg') no-repeat center center;
+    background-size: cover; z-index: -2;
+    animation: kenBurnsEffect 20s infinite alternate ease-in-out;
+}
+@keyframes kenBurnsEffect {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }
 }
 
 .overlay {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5); /* Gelapkan gambar background */
+    background: rgba(0,0,0,0.55); z-index: -1;
 }
 
-.hero-content { position: relative; z-index: 2; max-width: 800px; padding: 20px; }
-
-.badge-hero {
-    background: rgba(255,255,255,0.2);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    border: 1px solid rgba(255,255,255,0.5);
-    display: inline-block;
-    margin-bottom: 20px;
+/* EFEK KILAU EMAS (SHIMMER) */
+.hero::after {
+    content: ''; position: absolute; top: 0; left: -100%; width: 200%; height: 100%;
+    background: linear-gradient(to right, transparent 0%, rgba(212, 175, 55, 0.08) 50%, transparent 100%);
+    z-index: -1; animation: goldShimmer 8s infinite linear; pointer-events: none;
+}
+@keyframes goldShimmer {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(50%); }
 }
 
-.hero h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; color: var(--white); }
-.hero p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; }
-
-.hero-buttons { display: flex; gap: 15px; justify-content: center; }
-
-.btn-primary {
-    background: var(--gold); color: var(--white);
-    padding: 15px 35px; border-radius: 50px; font-weight: 600; transition: 0.3s;
+.hero-content { position: relative; z-index: 2; padding: 20px; margin-top: 60px; }
+.hero-title {
+    font-size: 4rem; line-height: 1.1; margin-bottom: 20px; color: var(--white);
+    text-shadow: 0 5px 15px rgba(0,0,0,0.5); font-weight: 700;
 }
-.btn-primary:hover { background: var(--dark-gold); transform: translateY(-3px); }
+.tagline { margin-bottom: 30px; font-size: 1.1rem; color: #eee; }
 
-.btn-secondary {
-    background: transparent; color: var(--white); border: 2px solid var(--white);
-    padding: 15px 35px; border-radius: 50px; font-weight: 600; transition: 0.3s;
+.btn-whatsapp {
+    background: #25D366; color: white; padding: 15px 35px; border-radius: 50px;
+    font-size: 1.1rem; font-weight: bold; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); border: 2px solid #25D366;
 }
-.btn-secondary:hover { background: var(--white); color: var(--black); }
+.btn-whatsapp:hover { background: transparent; color: #25D366; transform: translateY(-5px); }
 
-/* --- FEATURES --- */
-.features { padding: 80px 0; background: var(--white); }
+/* --- VALUES & PACKAGES (COMMON BACKGROUND) --- */
+/* FIX: Menggunakan file lokal arabesque.png */
+.values-section, .packages-section {
+    padding: 80px 0;
+    position: relative;
+    /* Layer 1: Warna Putih Transparan (95%), Layer 2: File Lokal Arabesque */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+        url('assets/images/arabesque.png'); /* FILE LOKAL */
+    background-size: 400px; /* Ukuran pola pattern */
+    background-repeat: repeat;
+}
+
+/* --- VALUES (4 PILAR) --- */
+.values-section { text-align: center; }
+.section-header { margin-bottom: 50px; }
+.section-header h2 { font-size: 2.5rem; margin-bottom: 10px; color: var(--midnight-black); }
 .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
 
-.feature-box {
-    text-align: center; padding: 30px; border-radius: 10px;
-    transition: 0.3s; border: 1px solid #eee;
+.value-box {
+    padding: 30px; border: 1px solid #ddd; border-radius: 15px; transition: 0.3s;
+    background: #fff;
 }
-.feature-box:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.05); transform: translateY(-5px); }
-
-.icon-box {
-    font-size: 2.5rem; color: var(--gold); margin-bottom: 20px;
-}
+.value-box:hover { box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15); border-color: var(--royal-gold); transform: translateY(-5px); }
+.icon-gold { font-size: 2.5rem; color: var(--royal-gold); margin-bottom: 15px; }
+.value-box h3 span.gold-text { font-size: 1.8rem; margin-right: 2px; }
 
 /* --- PACKAGES --- */
-.packages-section { padding: 80px 0; background: var(--light-bg); }
-.section-header { text-align: center; margin-bottom: 50px; }
-.section-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
-
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
-.package-card {
-    background: var(--white); border-radius: 15px; overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: 0.3s; position: relative;
+/* EFEK GOLD GLOW HOVER (FIXED) */
+.package-card { 
+    background: var(--white); border-radius: 15px; overflow: hidden; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
 }
-.package-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-
-.popular { border: 2px solid var(--gold); transform: scale(1.05); z-index: 2; }
-.badge-popular {
-    position: absolute; top: 20px; right: 0; background: var(--gold); color: var(--white);
-    padding: 5px 15px; font-size: 0.8rem; font-weight: bold; border-radius: 20px 0 0 20px; z-index: 3;
-}
-
-.card-img { position: relative; height: 200px; overflow: hidden; }
-.card-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-.package-card:hover .card-img img { transform: scale(1.1); }
-
-.price-tag {
-    position: absolute; bottom: 0; left: 0; background: var(--black); color: var(--white);
-    padding: 10px 20px; font-weight: bold; font-size: 1.2rem; border-radius: 0 15px 0 0;
-}
-.gold-bg { background: var(--gold); }
-
-.card-content { padding: 25px; }
-.card-content h3 { margin-bottom: 5px; font-size: 1.4rem; }
-.date { color: #777; font-size: 0.9rem; margin-bottom: 20px; }
-
-.facilities { margin-bottom: 25px; border-top: 1px solid #eee; padding-top: 15px; }
-.facilities li { margin-bottom: 10px; font-size: 0.95rem; color: #555; }
-.facilities i { color: var(--gold); margin-right: 10px; width: 20px; }
-
-.btn-card {
-    display: block; text-align: center; padding: 12px; border-radius: 8px;
-    background: #eee; color: var(--dark-grey); font-weight: 600; transition: 0.3s;
-}
-.btn-card.primary { background: var(--gold); color: var(--white); }
-.btn-card:hover { background: var(--black); color: var(--white); }
-
-/* --- CTA SECTION --- */
-.cta-section {
-    background: var(--black); color: var(--white); text-align: center; padding: 80px 20px;
-}
-.cta-section h2 { color: var(--white); margin-bottom: 15px; }
-.cta-section p { opacity: 0.8; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
-
-.btn-cta-big {
-    background: #25d366; color: var(--white); padding: 15px 40px;
-    font-size: 1.2rem; border-radius: 50px; display: inline-flex; align-items: center; gap: 10px;
-    font-weight: bold; transition: 0.3s;
-}
-.btn-cta-big:hover { background: #1ebc57; transform: scale(1.05); }
-
-/* --- FOOTER --- */
-footer { background: #111; color: #aaa; padding-top: 60px; }
-.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; padding-bottom: 40px; }
-
-.footer-info h3 { color: var(--white); font-size: 1.8rem; margin-bottom: 20px; }
-.footer-contact ul li { margin-bottom: 15px; display: flex; gap: 15px; }
-.footer-contact i { color: var(--gold); margin-top: 5px; }
-
-.social-icons { display: flex; gap: 15px; margin-top: 20px; }
-.social-icons a {
-    width: 40px; height: 40px; background: #222; display: flex; align-items: center; justify-content: center;
-    border-radius: 50%; color: var(--white); transition: 0.3s;
-}
-.social-icons a:hover { background: var(--gold); }
-
-.copyright {
-    background: #000; text-align: center; padding: 20px; font-size: 0.85rem; border-top: 1px solid #222;
+.package-card:hover { 
+    transform: translateY(-15px); 
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.25); /* Bayangan Emas */
+    border: 1px solid var(--royal-gold); 
 }
 
-/* --- RESPONSIVE MOBILE --- */
+.card-header-black { background: var(--midnight-black); color: var(--white); padding: 20px; text-align: center; }
+.card-header-gold { background: var(--royal-gold); color: var(--midnight-black); padding: 20px; text-align: center; }
+.price-section { padding: 20px; text-align: center; border-bottom: 1px solid #eee; }
+.price { font-size: 2.5rem; font-weight: bold; color: var(--royal-gold); font-family: 'Playfair Display', serif; }
+.start-from { font-size: 0.8rem; color: #777; }
+.card-body { padding: 30px; text-align: center; }
+.card-body ul { list-style: none; margin-bottom: 25px; text-align: left; }
+.card-body li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: #555; }
+
+.btn-card { display: block; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; background: #eee; color: #333; transition: 0.3s; }
+.btn-card.primary { background: var(--royal-gold); color: #000; }
+
+/* Tombol berubah saat Card di Hover */
+.package-card:hover .btn-card { background: var(--royal-gold); color: #fff; letter-spacing: 1px; }
+
+.best-seller { border: 2px solid var(--royal-gold); transform: scale(1.03); z-index: 2; }
+.badge-gold { position: absolute; top: 0; right: 0; background: var(--royal-gold); color: #000; padding: 5px 15px; font-size: 0.8rem; font-weight: bold; }
+
+/* --- PROMO BANNER --- */
+.promo-banner {
+    /* Pastikan file bg-mekkah.jpg ada */
+    background: url('assets/images/bg-mekkah.jpg') fixed center center;
+    background-size: cover;
+    padding: 80px 20px; text-align: center; color: white; position: relative;
+}
+.promo-banner::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
+.promo-banner .container { position: relative; z-index: 2; }
+.promo-banner h2 { font-size: 2.5rem; margin-bottom: 10px; }
+
+/* --- FOOTER (3 KOLOM) --- */
+footer { background: #0a0a0a; color: #ccc; position: relative; padding-top: 30px; }
+
+.footer-border {
+    height: 3px; background: linear-gradient(to right, var(--royal-gold), #fff, var(--royal-gold));
+    width: 100%; position: absolute; top: 0; left: 0; box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.footer-grid {
+    display: grid;
+    /* FIX: 3 KOLOM */
+    grid-template-columns: 1.2fr 0.8fr 1fr; 
+    gap: 30px; padding-bottom: 25px; align-items: start;
+}
+
+/* KOLOM 3: MAPS */
+.footer-map h4 { font-size: 1.3rem; color: var(--royal-gold); margin-bottom: 15px; }
+.map-frame {
+    width: 100%; height: 150px; border-radius: 10px; overflow: hidden;
+    border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 5px 15px rgba(0,0,0,0.3); margin-bottom: 10px;
+}
+.address-text { font-size: 0.9rem; color: #aaa; margin-top: 5px; }
+
+.footer-logo { height: 80px; width: auto; margin-bottom: 10px; }
+.pt-name { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 10px; font-family: 'Playfair Display', serif; }
+.nib-box {
+    background: rgba(255, 255, 255, 0.03); padding: 5px 12px; border-radius: 6px;
+    border: 1px solid rgba(212, 175, 55, 0.2); display: inline-block;
+}
+.nib-label { display: block; font-size: 0.7rem; color: #888; }
+.nib-number { font-size: 0.9rem; color: var(--royal-gold); font-family: monospace; }
+
+.footer-contact h4 { font-size: 1.3rem; color: var(--royal-gold); margin-bottom: 15px; }
+.contact-list { display: flex; flex-direction: column; gap: 8px; }
+.contact-item { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #ccc; transition: 0.3s; font-size: 0.9rem; }
+.contact-item:hover { color: var(--royal-gold); transform: translateX(3px); }
+.icon-circle { width: 28px; height: 28px; font-size: 0.9rem; background: var(--royal-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; }
+.copyright { background: #000; text-align: center; padding: 15px; font-size: 0.75rem; color: #666; border-top: 1px solid rgba(255,255,255,0.05); }
+
+/* --- FLOATING WA BUTTON --- */
+.float-wa {
+    position: fixed; bottom: 30px; right: 30px;
+    background: #25d366; color: #fff; width: 60px; height: 60px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); z-index: 999;
+    border: 2px solid #fff; transition: 0.3s;
+}
+.float-wa:hover { transform: scale(1.1); background: #20b857; }
+
+/* --- PRELOADER BASMALAH --- */
+#preloader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #ffffff; /* Hitam biar premium pas loading */
+    z-index: 9999;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 1s ease-out;
+}
+
+.arabic-loader {
+    font-family: 'Amiri', serif; font-size: 2.5rem; color: var(--royal-gold); margin-bottom: 20px;
+    animation: fadePulse 2s infinite;
+}
+
+.loader-line {
+    width: 0; height: 3px; background: var(--royal-gold);
+    animation: loadLine 2s ease-in-out forwards; border-radius: 2px;
+}
+@keyframes loadLine { 0% { width: 0; } 100% { width: 200px; } }
+@keyframes fadePulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.loaded { opacity: 0; pointer-events: none; }
+
+/* --- MOBILE RESPONSIVE (SEMUA DISATUKAN DISINI) --- */
 @media (max-width: 768px) {
+    /* Navbar */
+    .navbar { position: fixed; background: var(--midnight-black); padding: 10px 0; }
     .hamburger { display: block; }
-    
     .nav-links {
-        position: absolute; top: 70px; left: 0; width: 100%;
-        background: var(--white); flex-direction: column; padding: 20px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        display: none; /* Hidden by default */
+        position: absolute; top: 100%; left: 0; width: 100%;
+        background: var(--midnight-black); flex-direction: column; padding: 20px; gap: 20px;
+        display: none; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
     }
+    .nav-links.active { display: flex; }
     
-    .nav-links.active { display: flex; } /* Class to show menu */
+    /* Hero */
+    .hero-title { font-size: 2.2rem; margin-top: 10px; }
+    .logo img { height: 70px; }
+    .hero-content { margin-top: 80px; }
     
-    .hero h1 { font-size: 2.2rem; }
-    .hero-buttons { flex-direction: column; }
+    /* Layout */
+    .grid-4, .grid-3, .footer-grid { grid-template-columns: 1fr; }
+    .best-seller { transform: scale(1); margin: 20px 0; }
     
-    .popular { transform: scale(1); margin: 20px 0; }
+    /* Footer */
+    .footer-grid { text-align: center; gap: 40px; }
+    .footer-logo { display: inline-block; }
+    .contact-item { justify-content: center; }
+    
+    /* Peta di HP di bawah */
+    .footer-map { order: 3; }
+    .map-frame { height: 200px; }
 }
