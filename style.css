@@ -1,21 +1,25 @@
-/* --- RESET & VARIABLES --- */
+/* =========================================
+   STYLE.CSS - BISA TOUR (PREMIUM BLACK GOLD)
+   ========================================= */
+
+/* --- 1. RESET & VARIABLES --- */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 
 :root {
-    --royal-gold: #D4AF37;
-    --midnight-black: #111111;
+    --royal-gold: #D4AF37;       /* Emas Mewah */
+    --midnight-black: #111111;   /* Hitam Pekat (Teks) */
+    --dark-premium-bg: #1a1a1a;  /* Hitam Soft (Background Body) */
     --white: #ffffff;
     --light-gray: #f9f9f9;
 }
 
-/* BACKGROUND UTAMA: TEKSTUR MARMER (Web Luar) */
-/* Kalau marmernya mau lokal juga, simpan gambar marmer jadi 'marble.png' di folder images */
+/* --- 2. BACKGROUND UTAMA (PREMIUM DARK) --- */
 body {
-    background-color: var(--light-gray);
-    color: #333;
-    background-image: url('https://www.transparenttextures.com/patterns/white-marble.png'); 
-    background-repeat: repeat;
+    background-color: var(--dark-premium-bg); 
+    color: #eee; /* Teks default putih gading di area gelap */
+    /* Tekstur Noise Halus (Biar tidak flat) */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
     background-attachment: fixed;
 }
 
@@ -23,9 +27,9 @@ body {
 h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
 .container { width: 90%; max-width: 1100px; margin: auto; }
 
-/* --- NAVBAR (TRANSPARAN + SHADOW) --- */
+/* --- 3. NAVBAR (TRANSPARAN + SHADOW) --- */
 .navbar {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
     padding: 20px 0;
     position: absolute; top: 0; left: 0; width: 100%;
     z-index: 1000;
@@ -56,7 +60,8 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
 .btn-nav:hover { background: var(--royal-gold); color: var(--midnight-black) !important; }
 .hamburger { display: none; color: var(--white); cursor: pointer; font-size: 2rem; }
 
-/* --- HERO SECTION --- */
+
+/* --- 4. HERO SECTION --- */
 .hero {
     height: 100vh;
     position: relative; display: flex; align-items: center; justify-content: center;
@@ -66,7 +71,7 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
 /* ANIMASI BACKGROUND KEN BURNS */
 .hero-bg-animated {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    /* Pastikan file bg-mekkah.jpg ada di folder images */
+    /* Pastikan file bg-mekkah.jpg ada */
     background: url('assets/images/bg-mekkah.jpg') no-repeat center center;
     background-size: cover; z-index: -2;
     animation: kenBurnsEffect 20s infinite alternate ease-in-out;
@@ -107,37 +112,53 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
 }
 .btn-whatsapp:hover { background: transparent; color: #25D366; transform: translateY(-5px); }
 
-/* --- VALUES & PACKAGES (COMMON BACKGROUND) --- */
-/* FIX: Menggunakan file lokal arabesque.png */
-.values-section, .packages-section {
-    padding: 80px 0;
+
+/* --- 5. SECTION KONTEN (CARD STYLE DI ATAS BACKGROUND HITAM) --- */
+/* Ini trik agar section tetap putih terang walau background body hitam */
+.values-section, 
+.packages-section, 
+.gallery-tips-section {
+    background-color: #fff; /* Balik ke putih */
+    color: #333; /* Teks hitam */
     position: relative;
-    /* Layer 1: Warna Putih Transparan (95%), Layer 2: File Lokal Arabesque */
+    
+    /* Motif Arabesque Halus */
     background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
-        url('assets/images/arabesque.png'); /* FILE LOKAL */
-    background-size: 400px; /* Ukuran pola pattern */
+        linear-gradient(rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.97)),
+        url('assets/images/arabesque.png');
+    background-size: 400px;
     background-repeat: repeat;
+
+    /* Styling Kartu Melayang */
+    margin: 60px auto; 
+    width: 95%; max-width: 1200px;
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5); /* Bayangan besar */
+    padding: 80px 20px;
+    overflow: hidden;
 }
 
-/* --- VALUES (4 PILAR) --- */
-.values-section { text-align: center; }
-.section-header { margin-bottom: 50px; }
-.section-header h2 { font-size: 2.5rem; margin-bottom: 10px; color: var(--midnight-black); }
+/* Judul Section jadi Hitam */
+.section-header h2 { color: var(--midnight-black) !important; margin-bottom: 10px; font-size: 2.5rem; }
+.section-header { text-align: center; margin-bottom: 50px; }
+
+
+/* --- 6. VALUES (4 PILAR) --- */
 .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
 
 .value-box {
     padding: 30px; border: 1px solid #ddd; border-radius: 15px; transition: 0.3s;
-    background: #fff;
+    background: #fff; text-align: center;
 }
 .value-box:hover { box-shadow: 0 15px 30px rgba(212, 175, 55, 0.15); border-color: var(--royal-gold); transform: translateY(-5px); }
 .icon-gold { font-size: 2.5rem; color: var(--royal-gold); margin-bottom: 15px; }
 .value-box h3 span.gold-text { font-size: 1.8rem; margin-right: 2px; }
 
-/* --- PACKAGES --- */
+
+/* --- 7. PACKAGES (PAKET UMRAH) --- */
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
-/* EFEK GOLD GLOW HOVER (FIXED) */
+/* EFEK GOLD GLOW HOVER */
 .package-card { 
     background: var(--white); border-radius: 15px; overflow: hidden; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
@@ -145,7 +166,7 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
 }
 .package-card:hover { 
     transform: translateY(-15px); 
-    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.25); /* Bayangan Emas */
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.25); /* Glow Emas */
     border: 1px solid var(--royal-gold); 
 }
 
@@ -160,184 +181,37 @@ h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
 
 .btn-card { display: block; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; background: #eee; color: #333; transition: 0.3s; }
 .btn-card.primary { background: var(--royal-gold); color: #000; }
-
-/* Tombol berubah saat Card di Hover */
 .package-card:hover .btn-card { background: var(--royal-gold); color: #fff; letter-spacing: 1px; }
 
 .best-seller { border: 2px solid var(--royal-gold); transform: scale(1.03); z-index: 2; }
 .badge-gold { position: absolute; top: 0; right: 0; background: var(--royal-gold); color: #000; padding: 5px 15px; font-size: 0.8rem; font-weight: bold; }
 
-/* --- PROMO BANNER --- */
-.promo-banner {
-    /* Pastikan file bg-mekkah.jpg ada */
-    background: url('assets/images/bg-mekkah.jpg') fixed center center;
-    background-size: cover;
-    padding: 80px 20px; text-align: center; color: white; position: relative;
-}
-.promo-banner::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
-.promo-banner .container { position: relative; z-index: 2; }
-.promo-banner h2 { font-size: 2.5rem; margin-bottom: 10px; }
 
-/* --- FOOTER (3 KOLOM) --- */
-footer { background: #0a0a0a; color: #ccc; position: relative; padding-top: 30px; }
-
-.footer-border {
-    height: 3px; background: linear-gradient(to right, var(--royal-gold), #fff, var(--royal-gold));
-    width: 100%; position: absolute; top: 0; left: 0; box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-}
-
-.footer-grid {
-    display: grid;
-    /* FIX: 3 KOLOM */
-    grid-template-columns: 1.2fr 0.8fr 1fr; 
-    gap: 30px; padding-bottom: 25px; align-items: start;
-}
-
-/* KOLOM 3: MAPS */
-.footer-map h4 { font-size: 1.3rem; color: var(--royal-gold); margin-bottom: 15px; }
-.map-frame {
-    width: 100%; height: 150px; border-radius: 10px; overflow: hidden;
-    border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 5px 15px rgba(0,0,0,0.3); margin-bottom: 10px;
-}
-.address-text { font-size: 0.9rem; color: #aaa; margin-top: 5px; }
-
-.footer-logo { height: 80px; width: auto; margin-bottom: 10px; }
-.pt-name { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 10px; font-family: 'Playfair Display', serif; }
-.nib-box {
-    background: rgba(255, 255, 255, 0.03); padding: 5px 12px; border-radius: 6px;
-    border: 1px solid rgba(212, 175, 55, 0.2); display: inline-block;
-}
-.nib-label { display: block; font-size: 0.7rem; color: #888; }
-.nib-number { font-size: 0.9rem; color: var(--royal-gold); font-family: monospace; }
-
-.footer-contact h4 { font-size: 1.3rem; color: var(--royal-gold); margin-bottom: 15px; }
-.contact-list { display: flex; flex-direction: column; gap: 8px; }
-.contact-item { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #ccc; transition: 0.3s; font-size: 0.9rem; }
-.contact-item:hover { color: var(--royal-gold); transform: translateX(3px); }
-.icon-circle { width: 28px; height: 28px; font-size: 0.9rem; background: var(--royal-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; }
-.copyright { background: #000; text-align: center; padding: 15px; font-size: 0.75rem; color: #666; border-top: 1px solid rgba(255,255,255,0.05); }
-
-/* --- FLOATING WA BUTTON --- */
-.float-wa {
-    position: fixed; bottom: 30px; right: 30px;
-    background: #25d366; color: #fff; width: 60px; height: 60px;
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); z-index: 999;
-    border: 2px solid #fff; transition: 0.3s;
-}
-.float-wa:hover { transform: scale(1.1); background: #20b857; }
-
-/* --- PRELOADER BASMALAH --- */
-#preloader {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #ffffff; /* Hitam biar premium pas loading */
-    z-index: 9999;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    transition: opacity 1s ease-out;
-}
-
-.arabic-loader {
-    font-family: 'Amiri', serif; font-size: 2.5rem; color: var(--royal-gold); margin-bottom: 20px;
-    animation: fadePulse 2s infinite;
-}
-
-.loader-line {
-    width: 0; height: 3px; background: var(--royal-gold);
-    animation: loadLine 2s ease-in-out forwards; border-radius: 2px;
-}
-@keyframes loadLine { 0% { width: 0; } 100% { width: 200px; } }
-@keyframes fadePulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-.loaded { opacity: 0; pointer-events: none; }
-
-/* --- SECTION GALERI & TIPS --- */
-.gallery-tips-section {
-    padding: 80px 0;
-    background: #fff; /* Background putih bersih */
-    position: relative;
-}
-
-/* GALERI GRID */
-/* --- GALERI SLIDER (UPDATE) --- */
-
+/* --- 8. GALERI SLIDER (INFINITE MARQUEE) --- */
 .gallery-slider {
-    width: 100%;
-    overflow: hidden; /* Menyembunyikan foto yang keluar jalur */
-    position: relative;
-    margin-bottom: 50px;
+    width: 100%; overflow: hidden; position: relative; margin-bottom: 50px;
 }
 
 .gallery-track {
-    display: flex;
-    width: max-content; /* Lebar mengikuti jumlah foto */
-    gap: 20px; /* Jarak antar foto */
-    
-    /* ANIMASI BERJALAN */
-    /* 30s = kecepatan (makin kecil makin ngebut) */
-    animation: scrollGallery 60s linear infinite;
+    display: flex; width: max-content; gap: 20px;
+    animation: scrollGallery 60s linear infinite; /* Kecepatan Santai */
 }
 
-/* KOTAK FOTO */
 .slide-item {
-    width: 300px; /* Lebar foto */
-    height: 200px; /* Tinggi foto */
-    border-radius: 15px;
-    overflow: hidden;
-    flex-shrink: 0; /* Agar foto tidak gepeng */
-    border: 1px solid #eee;
+    width: 300px; height: 200px; border-radius: 15px; overflow: hidden;
+    flex-shrink: 0; border: 1px solid #eee;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .slide-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease; /* Transisi halus untuk zoom */
+    width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;
 }
+.slide-item:hover img { transform: scale(1.15); }
 
-/* EFEK ZOOM SAAT HOVER */
-.slide-item:hover img {
-    transform: scale(1.15); /* Membesar 15% */
-}
-
-/* ANIMASI BERJALAN KE KIRI (Biar foto baru muncul dari kanan) */
 @keyframes scrollGallery {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        /* Geser sejauh 50% (karena kita punya 2 set foto kembar) */
-        /* Jadi pas set 1 habis, langsung nyambung set 2 tanpa kedip */
-        transform: translateX(-50%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
-
-/* (Opsional) Slider Berhenti saat Mouse Nempel */
-.gallery-track:hover {
-    animation-play-state: paused;
-}
-
-/* Responsive di HP */
-@media (max-width: 768px) {
-    .slide-item {
-        width: 200px; /* Di HP foto lebih kecil */
-        height: 150px;
-    }
-}
-
-.gallery-item img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-/* Efek Overlay saat Hover */
-.gallery-overlay {
-    position: absolute; bottom: -50px; left: 0; width: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    padding: 20px; color: var(--white); opacity: 0; transition: 0.3s;
-}
-
-.gallery-item:hover img { transform: scale(1.1); } /* Zoom Effect */
-.gallery-item:hover .gallery-overlay { bottom: 0; opacity: 1; }
 
 /* PEMBATAS EMAS */
 .divider-gold {
@@ -345,103 +219,89 @@ footer { background: #0a0a0a; color: #ccc; position: relative; padding-top: 30px
     margin: 0 auto 50px auto; opacity: 0.5;
 }
 
-/* TIPS CARDS */
+
+/* --- 9. TIPS & ARTIKEL GRID --- */
 .tips-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;
 }
 
 .tip-card {
-    background: #fdfdfd;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    padding: 25px;
-    text-decoration: none; color: #333;
-    transition: 0.3s;
-    display: flex; gap: 20px; align-items: flex-start;
+    background: #fdfdfd; border: 1px solid #eee; border-radius: 12px;
+    padding: 25px; text-decoration: none; color: #333; transition: 0.3s;
+    display: flex; gap: 20px; align-items: flex-start; cursor: pointer;
 }
 
 .tip-card:hover {
-    background: var(--white);
-    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
-    border-color: var(--royal-gold);
-    transform: translateY(-5px);
+    background: var(--white); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+    border-color: var(--royal-gold); transform: translateY(-5px);
 }
 
 .tip-icon {
-    font-size: 1.8rem; color: var(--royal-gold);
-    background: rgba(212, 175, 55, 0.1);
+    font-size: 1.8rem; color: var(--royal-gold); background: rgba(212, 175, 55, 0.1);
     width: 50px; height: 50px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 
 .tip-content h4 { font-size: 1.1rem; margin-bottom: 5px; font-weight: 700; font-family: 'Poppins', sans-serif; }
 .tip-content p { font-size: 0.85rem; color: #666; margin-bottom: 10px; line-height: 1.5; }
 .read-more { font-size: 0.8rem; font-weight: 600; color: var(--royal-gold); display: flex; align-items: center; gap: 5px; }
 
-/* Responsive Grid Galeri di HP */
-@media (max-width: 768px) {
-    .gallery-item { height: 200px; }
-    .tips-grid { grid-template-columns: 1fr; }
-}
 
-/* --- MOBILE RESPONSIVE (SEMUA DISATUKAN DISINI) --- */
-@media (max-width: 768px) {
-    /* Navbar */
-    .navbar { position: fixed; background: var(--midnight-black); padding: 10px 0; }
-    .hamburger { display: block; }
-    .nav-links {
-        position: absolute; top: 100%; left: 0; width: 100%;
-        background: var(--midnight-black); flex-direction: column; padding: 20px; gap: 20px;
-        display: none; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-    }
-    .nav-links.active { display: flex; }
-    
-    /* Hero */
-    .hero-title { font-size: 2.2rem; margin-top: 10px; }
-    .logo img { height: 70px; }
-    .hero-content { margin-top: 80px; }
-    
-    /* Layout */
-    .grid-4, .grid-3, .footer-grid { grid-template-columns: 1fr; }
-    .best-seller { transform: scale(1); margin: 20px 0; }
-    
-    /* Footer */
-    .footer-grid { text-align: center; gap: 40px; }
-    .footer-logo { display: inline-block; }
-    .contact-item { justify-content: center; }
-    
-    /* Peta di HP di bawah */
-    .footer-map { order: 3; }
-    .map-frame { height: 200px; }
-}
-/* --- CSS POP-UP (MODAL) --- */
+/* --- 10. CSS POP-UP (MODAL) --- */
 .modal {
-    display: none; /* Sembunyi dulu */
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.8); /* Latar belakang gelap transparan */
-    z-index: 10000; /* Paling atas */
-    justify-content: center; align-items: center;
-    backdrop-filter: blur(5px); /* Efek blur di background */
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8); z-index: 10000;
+    justify-content: center; align-items: center; backdrop-filter: blur(5px);
     animation: fadeIn 0.3s;
 }
 
+/* --- UPDATE CSS MODAL (FIX WARNA TEKS) --- */
 .modal-content {
     background: #fff;
-    width: 90%; max-width: 500px;
+    width: 90%; max-width: 600px; /* Saya lebarkan sedikit biar muat banyak teks */
     padding: 30px;
     border-radius: 15px;
     position: relative;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     border: 1px solid var(--royal-gold);
     animation: slideUp 0.3s;
+    text-align: left; /* Pastikan rata kiri */
+}
+
+/* JUDUL MODAL */
+.modal-header h3 {
+    color: var(--midnight-black); /* Hitam Pekat */
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+/* ISI BODY MODAL (INI YANG KEMARIN PUDAR) */
+.modal-body {
+    color: #333 !important; /* Paksa jadi Hitam Gelap */
+}
+
+.modal-body p {
+    color: #444; /* Abu tua biar enak dibaca */
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* LIST ITEM */
+.modal-body ul {
+    margin-left: 20px;
+    line-height: 1.8;
+    color: #333; /* Hitam */
+}
+
+.modal-body li {
+    margin-bottom: 8px;
+    border-bottom: 1px dashed #eee; /* Garis pemisah tipis biar rapi */
+    padding-bottom: 8px;
 }
 
 .close-btn {
-    position: absolute; top: 15px; right: 20px;
-    font-size: 2rem; color: #999; cursor: pointer; transition: 0.3s;
+    position: absolute; top: 15px; right: 20px; font-size: 2rem; color: #999; cursor: pointer; transition: 0.3s;
 }
 .close-btn:hover { color: red; }
 
@@ -454,6 +314,109 @@ footer { background: #0a0a0a; color: #ccc; position: relative; padding-top: 30px
 .doa-box { background: #fdfdfd; border-left: 4px solid var(--royal-gold); padding: 15px; margin-bottom: 15px; }
 .arab { font-family: 'Amiri', serif; font-size: 1.4rem; color: var(--midnight-black); margin: 10px 0; text-align: right; }
 
-/* Animasi Muncul */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slideUp { from { transform: translateY(50px); } to { transform: translateY(0); } }
+
+
+/* --- 11. PROMO BANNER --- */
+.promo-banner {
+    background: url('assets/images/bg-mekkah.jpg') fixed center center;
+    background-size: cover; padding: 80px 20px; text-align: center; color: white; position: relative;
+}
+.promo-banner::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
+.promo-banner .container { position: relative; z-index: 2; }
+.promo-banner h2 { font-size: 2.5rem; margin-bottom: 10px; }
+
+
+/* --- 12. FOOTER (3 KOLOM) --- */
+footer { background: #0a0a0a; color: #ccc; position: relative; padding-top: 30px; }
+
+.footer-border {
+    height: 3px; background: linear-gradient(to right, var(--royal-gold), #fff, var(--royal-gold));
+    width: 100%; position: absolute; top: 0; left: 0; box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.footer-grid {
+    display: grid; grid-template-columns: 1.2fr 0.8fr 1fr; gap: 30px; padding-bottom: 25px; align-items: start;
+}
+
+.footer-logo { height: 80px; width: auto; margin-bottom: 10px; }
+.pt-name { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 10px; font-family: 'Playfair Display', serif; }
+.nib-box {
+    background: rgba(255, 255, 255, 0.03); padding: 5px 12px; border-radius: 6px;
+    border: 1px solid rgba(212, 175, 55, 0.2); display: inline-block;
+}
+.nib-label { display: block; font-size: 0.7rem; color: #888; }
+.nib-number { font-size: 0.9rem; color: var(--royal-gold); font-family: monospace; }
+
+.footer-contact h4, .footer-map h4 { font-size: 1.3rem; color: var(--royal-gold); margin-bottom: 15px; }
+.contact-list { display: flex; flex-direction: column; gap: 8px; }
+.contact-item { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #ccc; transition: 0.3s; font-size: 0.9rem; }
+.contact-item:hover { color: var(--royal-gold); transform: translateX(3px); }
+.icon-circle { width: 28px; height: 28px; font-size: 0.9rem; background: var(--royal-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; }
+
+.map-frame {
+    width: 100%; height: 150px; border-radius: 10px; overflow: hidden;
+    border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 5px 15px rgba(0,0,0,0.3); margin-bottom: 10px;
+}
+.address-text { font-size: 0.9rem; color: #aaa; margin-top: 5px; }
+
+.copyright { background: #000; text-align: center; padding: 15px; font-size: 0.75rem; color: #666; border-top: 1px solid rgba(255,255,255,0.05); }
+
+
+/* --- 13. FLOATING WA & PRELOADER --- */
+.float-wa {
+    position: fixed; bottom: 30px; right: 30px;
+    background: #25d366; color: #fff; width: 60px; height: 60px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); z-index: 999;
+    border: 2px solid #fff; transition: 0.3s;
+}
+.float-wa:hover { transform: scale(1.1); background: #20b857; }
+
+#preloader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #fff; z-index: 9999;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 1s ease-out;
+}
+.arabic-loader { font-family: 'Amiri', serif; font-size: 2.5rem; color: var(--royal-gold); margin-bottom: 20px; animation: fadePulse 2s infinite; }
+.loader-line { width: 0; height: 3px; background: var(--royal-gold); animation: loadLine 2s ease-in-out forwards; border-radius: 2px; }
+@keyframes loadLine { 0% { width: 0; } 100% { width: 200px; } }
+@keyframes fadePulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.loaded { opacity: 0; pointer-events: none; }
+
+
+/* --- 14. MOBILE RESPONSIVE (TERAKHIR) --- */
+@media (max-width: 768px) {
+    .navbar { position: fixed; background: var(--midnight-black); padding: 10px 0; }
+    .hamburger { display: block; }
+    .nav-links {
+        position: absolute; top: 100%; left: 0; width: 100%;
+        background: var(--midnight-black); flex-direction: column; padding: 20px; gap: 20px;
+        display: none; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+    .nav-links.active { display: flex; }
+    
+    .hero-title { font-size: 2.2rem; margin-top: 10px; }
+    .logo img { height: 70px; }
+    .hero-content { margin-top: 80px; }
+    
+    /* Layout Mobile */
+    .grid-4, .grid-3, .tips-grid, .footer-grid { grid-template-columns: 1fr; }
+    .best-seller { transform: scale(1); margin: 20px 0; }
+    
+    /* Card Mobile Adjustment */
+    .values-section, .packages-section, .gallery-tips-section {
+        width: 100%; border-radius: 0; margin: 0; padding: 60px 15px; box-shadow: none;
+        background: #fff; /* Di HP full putih biar layar maksimal */
+    }
+    
+    .slide-item { width: 200px; height: 150px; }
+    
+    .footer-grid { text-align: center; gap: 40px; }
+    .footer-logo { display: inline-block; }
+    .contact-item { justify-content: center; }
+    .footer-map { order: 3; }
+    .map-frame { height: 200px; }
+}
