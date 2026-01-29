@@ -249,6 +249,144 @@ footer { background: #0a0a0a; color: #ccc; position: relative; padding-top: 30px
 @keyframes fadePulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 .loaded { opacity: 0; pointer-events: none; }
 
+/* --- SECTION GALERI & TIPS --- */
+.gallery-tips-section {
+    padding: 80px 0;
+    background: #fff; /* Background putih bersih */
+    position: relative;
+}
+
+/* GALERI GRID */
+/* --- GALERI SLIDER (UPDATE) --- */
+
+.gallery-slider {
+    width: 100%;
+    overflow: hidden; /* Menyembunyikan foto yang keluar jalur */
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.gallery-track {
+    display: flex;
+    width: max-content; /* Lebar mengikuti jumlah foto */
+    gap: 20px; /* Jarak antar foto */
+    
+    /* ANIMASI BERJALAN */
+    /* 30s = kecepatan (makin kecil makin ngebut) */
+    animation: scrollGallery 60s linear infinite;
+}
+
+/* KOTAK FOTO */
+.slide-item {
+    width: 300px; /* Lebar foto */
+    height: 200px; /* Tinggi foto */
+    border-radius: 15px;
+    overflow: hidden;
+    flex-shrink: 0; /* Agar foto tidak gepeng */
+    border: 1px solid #eee;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.slide-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease; /* Transisi halus untuk zoom */
+}
+
+/* EFEK ZOOM SAAT HOVER */
+.slide-item:hover img {
+    transform: scale(1.15); /* Membesar 15% */
+}
+
+/* ANIMASI BERJALAN KE KIRI (Biar foto baru muncul dari kanan) */
+@keyframes scrollGallery {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Geser sejauh 50% (karena kita punya 2 set foto kembar) */
+        /* Jadi pas set 1 habis, langsung nyambung set 2 tanpa kedip */
+        transform: translateX(-50%);
+    }
+}
+
+/* (Opsional) Slider Berhenti saat Mouse Nempel */
+.gallery-track:hover {
+    animation-play-state: paused;
+}
+
+/* Responsive di HP */
+@media (max-width: 768px) {
+    .slide-item {
+        width: 200px; /* Di HP foto lebih kecil */
+        height: 150px;
+    }
+}
+
+.gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Efek Overlay saat Hover */
+.gallery-overlay {
+    position: absolute; bottom: -50px; left: 0; width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    padding: 20px; color: var(--white); opacity: 0; transition: 0.3s;
+}
+
+.gallery-item:hover img { transform: scale(1.1); } /* Zoom Effect */
+.gallery-item:hover .gallery-overlay { bottom: 0; opacity: 1; }
+
+/* PEMBATAS EMAS */
+.divider-gold {
+    height: 2px; width: 100px; background: var(--royal-gold);
+    margin: 0 auto 50px auto; opacity: 0.5;
+}
+
+/* TIPS CARDS */
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.tip-card {
+    background: #fdfdfd;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 25px;
+    text-decoration: none; color: #333;
+    transition: 0.3s;
+    display: flex; gap: 20px; align-items: flex-start;
+}
+
+.tip-card:hover {
+    background: var(--white);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+    border-color: var(--royal-gold);
+    transform: translateY(-5px);
+}
+
+.tip-icon {
+    font-size: 1.8rem; color: var(--royal-gold);
+    background: rgba(212, 175, 55, 0.1);
+    width: 50px; height: 50px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+
+.tip-content h4 { font-size: 1.1rem; margin-bottom: 5px; font-weight: 700; font-family: 'Poppins', sans-serif; }
+.tip-content p { font-size: 0.85rem; color: #666; margin-bottom: 10px; line-height: 1.5; }
+.read-more { font-size: 0.8rem; font-weight: 600; color: var(--royal-gold); display: flex; align-items: center; gap: 5px; }
+
+/* Responsive Grid Galeri di HP */
+@media (max-width: 768px) {
+    .gallery-item { height: 200px; }
+    .tips-grid { grid-template-columns: 1fr; }
+}
+
 /* --- MOBILE RESPONSIVE (SEMUA DISATUKAN DISINI) --- */
 @media (max-width: 768px) {
     /* Navbar */
@@ -279,3 +417,43 @@ footer { background: #0a0a0a; color: #ccc; position: relative; padding-top: 30px
     .footer-map { order: 3; }
     .map-frame { height: 200px; }
 }
+/* --- CSS POP-UP (MODAL) --- */
+.modal {
+    display: none; /* Sembunyi dulu */
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8); /* Latar belakang gelap transparan */
+    z-index: 10000; /* Paling atas */
+    justify-content: center; align-items: center;
+    backdrop-filter: blur(5px); /* Efek blur di background */
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background: #fff;
+    width: 90%; max-width: 500px;
+    padding: 30px;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border: 1px solid var(--royal-gold);
+    animation: slideUp 0.3s;
+}
+
+.close-btn {
+    position: absolute; top: 15px; right: 20px;
+    font-size: 2rem; color: #999; cursor: pointer; transition: 0.3s;
+}
+.close-btn:hover { color: red; }
+
+.modal-header { text-align: center; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; margin-bottom: 15px; }
+.modal-header i { font-size: 2.5rem; margin-bottom: 10px; display: block; }
+.modal-header h3 { color: var(--midnight-black); font-size: 1.5rem; }
+
+.modal-body ul { margin-left: 20px; line-height: 1.8; color: #555; }
+.modal-body li { margin-bottom: 10px; }
+.doa-box { background: #fdfdfd; border-left: 4px solid var(--royal-gold); padding: 15px; margin-bottom: 15px; }
+.arab { font-family: 'Amiri', serif; font-size: 1.4rem; color: var(--midnight-black); margin: 10px 0; text-align: right; }
+
+/* Animasi Muncul */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(50px); } to { transform: translateY(0); } }

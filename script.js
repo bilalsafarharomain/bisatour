@@ -19,3 +19,24 @@ window.addEventListener('load', () => {
         preloader.classList.add('loaded');
     }, 2000); // Tahan 2 detik biar Bismillah terbaca
 });
+
+/* --- LOGIKA POP-UP MODAL --- */
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = "flex"; // Munculkan modal
+    document.body.style.overflow = "hidden"; // Kunci scroll layar belakang
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = "none"; // Sembunyikan modal
+    document.body.style.overflow = "auto"; // Buka kunci scroll
+}
+
+// Tutup modal kalau user klik di area gelap (luar kotak)
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+}
