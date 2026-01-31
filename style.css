@@ -443,3 +443,78 @@ footer { background: #0a0a0a; color: #ccc; position: relative; padding-top: 30px
     color: #000 !important;
     font-weight: 700;
 }
+/* --- LAYOUT BARU: VALUES SPLIT (KARTU + VIDEO) --- */
+.values-split-layout {
+    display: flex;
+    gap: 40px;
+    align-items: center; /* Posisi vertikal tengah */
+    margin-top: 40px;
+}
+
+/* KIRI: Grid Kartu jadi 2 Kolom (2x2) */
+.values-grid-left {
+    flex: 1.5; /* Lebar 60% */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 Kolom */
+    gap: 25px;
+}
+
+/* KANAN: Video Container */
+.values-video-right {
+    flex: 1; /* Lebar 40% */
+    position: relative;
+    height: 100%;
+}
+/* UPDATE: KANAN VIDEO LEBIH RAMPING */
+.values-video-right {
+    flex: 0.7; /* Jatah lebar kolom dikurangi (biar ga dominan) */
+    max-width: 320px; /* Batasi lebar maksimal cuma 320px (Seukuran HP) */
+    margin: 0 auto; /* Posisi di tengah */
+    position: relative;
+    height: 100%;
+}
+
+.values-video-right video {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 5; /* Pastikan video di atas hiasan frame */
+    background: #000; /* Background hitam kalau loading */
+}
+
+/* Hiasan Frame Emas */
+.video-frame-accent {
+    position: absolute;
+    top: 15px;
+    right: -15px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--royal-gold);
+    border-radius: 20px;
+    z-index: 1; 
+    opacity: 0.6;
+    pointer-events: none; /* Biar gak menghalangi tombol play */
+}
+
+/* RESPONSIVE HP (Tumpuk ke bawah) */
+@media (max-width: 900px) {
+    .values-split-layout {
+        flex-direction: column-reverse; /* Video di atas, Kartu di bawah (atau hapus -reverse kalau mau video di bawah) */
+        gap: 30px;
+    }
+    .values-grid-left {
+        width: 100%;
+        grid-template-columns: 1fr; /* Di HP jadi 1 kolom ke bawah biar teks jelas */
+    }
+    .values-video-right {
+        width: 100%;
+        max-width: 400px; /* Batasi lebar video di HP biar ga kegedean */
+    }
+    .video-frame-accent {
+        right: -10px; top: 10px;
+    }
+}

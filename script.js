@@ -40,3 +40,28 @@ window.onclick = function(event) {
         document.body.style.overflow = "auto";
     }
 }
+/* --- AUTO PLAY/PAUSE VIDEO SAAT SCROLL --- */
+document.addEventListener("DOMContentLoaded", function() {
+    const video = document.getElementById("promoVideo");
+
+    // Cek apakah browser mendukung IntersectionObserver (Fitur pengintip)
+    if ("IntersectionObserver" in window) {
+        
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                // Jika video terlihat di layar (isIntersecting)
+                if (entry.isIntersecting) {
+                    video.play(); // Jalankan video
+                } else {
+                    // Jika video keluar dari layar
+                    video.pause(); // Stop video
+                }
+            });
+        }, {
+            threshold: 0.5 // Video baru jalan kalau 50% badannya sudah terlihat
+        });
+
+        // Mulai mengintip video
+        videoObserver.observe(video);
+    }
+});
