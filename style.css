@@ -518,3 +518,51 @@ footer { background: #0a0a0a; color: #ccc; position: relative; padding-top: 30px
         right: -10px; top: 10px;
     }
 }
+/* --- STYLE VIDEO GRID (PORTRAIT CLEAN) --- */
+.departure-grid {
+    display: grid;
+    /* Laptop: 4 Video berjejer (biar gak kepanjangan ke bawah) */
+    /* ATAU Tetap 2 Kolom tapi tinggi? Saran saya 4 kolom kalau di Laptop biar rapi sebaris */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px;
+    width: 95%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+.video-card {
+    background: #fff;
+    padding: 8px; /* Frame putih tipis */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border: 1px solid #eee;
+    transition: 0.3s;
+}
+
+/* EFEK HOVER: Video agak naik dikit pas disentuh */
+.video-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--royal-gold);
+}
+
+.video-card video {
+    width: 100%;
+    /* TINGGI VIDEO PORTRAIT */
+    height: 450px; /* Tinggi ideal untuk video portrait */
+    object-fit: cover; /* Video full kotak, tidak gepeng */
+    border-radius: 10px;
+    background: #000;
+    display: block;
+}
+
+/* RESPONSIVE HP (Jadi 2 Kolom, biar kaya galeri Instagram) */
+@media (max-width: 768px) {
+    .departure-grid {
+        grid-template-columns: 1fr 1fr; /* 2 Kolom di HP (Kiri-Kanan) */
+        gap: 15px;
+    }
+    
+    .video-card video {
+        height: 300px; /* Di HP tingginya dikurangi dikit biar proporsional */
+    }
+}
