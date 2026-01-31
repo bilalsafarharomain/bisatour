@@ -420,3 +420,26 @@ footer { background: #0a0a0a; color: #ccc; position: relative; padding-top: 30px
     .footer-map { order: 3; }
     .map-frame { height: 200px; }
 }
+/* --- FIX WARNA TEKS TESTIMONI --- */
+/* Memaksa semua teks di dalam section testimoni jadi gelap */
+.testimoni-section h2, 
+.testimoni-section h4, 
+.testimoni-section p {
+    color: var(--midnight-black) !important; /* Warna Hitam */
+}
+
+/* Khusus Sub-judul yang pudar */
+.testimoni-section .section-header p {
+    color: #666 !important; /* Abu tua */
+}
+
+/* Khusus isi testimoni (tanda kutip) */
+.testi-card p {
+    color: #444 !important; /* Abu gelap biar enak dibaca */
+}
+
+/* Pastikan nama jamaah hitam tebal */
+.testi-card h4 {
+    color: #000 !important;
+    font-weight: 700;
+}
