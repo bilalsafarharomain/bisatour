@@ -65,3 +65,38 @@ document.addEventListener("DOMContentLoaded", function() {
         videoObserver.observe(video);
     }
 });
+/* --- LIGHTBOX GALLERY (KLIK GAMBAR ZOOM) --- */
+document.addEventListener("DOMContentLoaded", function() {
+    // Ambil elemen modal
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("lightboxImg");
+    const closeBtn = document.querySelector(".close-btn");
+
+    // Ambil semua gambar yang ada di dalam slider
+    const galleryImages = document.querySelectorAll(".slide-item img");
+
+    // Pasang 'penyimak' klik untuk setiap gambar
+    galleryImages.forEach(img => {
+        img.addEventListener("click", function() {
+            modal.style.display = "block"; // Munculkan modal
+            modalImg.src = this.src;       // Ambil gambar yang diklik
+            
+            // Matikan scroll body biar website di belakang gak gerak
+            document.body.style.overflow = "hidden"; 
+        });
+    });
+
+    // Fungsi Menutup Modal (Klik Tombol X)
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto"; // Nyalakan scroll lagi
+    }
+
+    // Fungsi Menutup Modal (Klik Area Hitam di Luar Gambar)
+    modal.onclick = function(e) {
+        if (e.target === modal) {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+    }
+});
