@@ -108,29 +108,22 @@
         </div>
     </section>
 
-    <div class="brosur-container" style="margin: 80px auto 40px;">
-        <div class="section-header">
-            <h3>Brosur <span class="gold-text">Paket Lengkap</span></h3>
-            <p>Klik atau sentuh gambar untuk melihat detail.</p>
+  <section id="paket" class="packages-section">
+        
+       <div class="brosur-container" style="margin: 0 auto 60px;">
+            <div class="section-header">
+                <h2>Brosur <span class="gold-text">Paket Lengkap</span></h2>
+                <p>Klik atau sentuh gambar untuk melihat detail.</p>
+            </div>
+
+            <div class="brosur-grid">
+                <div class="brosur-item"><img src="assets/images/brosur-1.jpg" alt="Brosur Umrah 1" style="cursor: zoom-in;" onclick="openLightbox(this.src)"></div>
+                <div class="brosur-item"><img src="assets/images/brosur-2.jpg" alt="Brosur Umrah 2" style="cursor: zoom-in;" onclick="openLightbox(this.src)"></div>
+                <div class="brosur-item"><img src="assets/images/brosur-3.jpg" alt="Brosur Umrah 3" style="cursor: zoom-in;" onclick="openLightbox(this.src)"></div>
+                <div class="brosur-item"><img src="assets/images/brosur-4.jpg" alt="Brosur Umrah 4" style="cursor: zoom-in;" onclick="openLightbox(this.src)"></div>
+            </div>
         </div>
 
-        <div class="brosur-grid">
-            <div class="brosur-item">
-                <img src="assets/images/brosur-1.jpg" alt="Brosur Umrah 1">
-            </div>
-            <div class="brosur-item">
-                <img src="assets/images/brosur-2.jpg" alt="Brosur Umrah 2">
-            </div>
-            <div class="brosur-item">
-                <img src="assets/images/brosur-3.jpg" alt="Brosur Umrah 3">
-            </div>
-            <div class="brosur-item">
-                <img src="assets/images/brosur-4.jpg" alt="Brosur Umrah 4">
-            </div>
-        </div>
-    </div>
-
-    <section id="paket" class="packages-section">
         <div class="container">
             <div class="section-header">
                 <h2>Pilihan Paket Umrah</h2>
@@ -341,6 +334,14 @@
                     <span class="nib-label">NIB (Nomor Induk Berusaha):</span>
                     <span class="nib-number">1212250041713</span>
                 </div>
+                
+                <div class="bank-box" style="margin-top: 15px; padding: 15px; background: #fdfdfd; border-radius: 8px; border: 1px solid #eee; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
+                    <span style="display: block; font-size: 0.8rem; color: #666;">Pembayaran Resmi via Transfer:</span>
+                    <span style="display: block; font-size: 1.1rem; color: var(--midnight-black); font-weight: bold; margin: 3px 0;"><i class="fa-solid fa-building-columns" style="color:var(--royal-gold); margin-right:5px;"></i> Bank BSI</span>
+                    <span style="display: block; font-size: 0.85rem; color: #333;">a.n <strong>PT. Bilal Safar Haromain</strong></span>
+                    <hr style="border: none; border-top: 1px dashed #ddd; margin: 8px 0;">
+                    <span style="display: block; font-size: 0.75rem; color: #888; font-style: italic;">*Nomor rekening akan diberikan oleh tim admin kami saat proses pendaftaran.</span>
+                </div>
             </div>
 
             <div class="footer-contact">
@@ -481,6 +482,31 @@
             once: true,
             offset: 100
         });
+    </script>
+    <script>
+        // 1. Fungsi Buka Gambar (Zoom)
+        function openLightbox(imgSrc) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("lightboxImg");
+            modal.style.display = "block";
+            modalImg.src = imgSrc;
+        }
+
+        // 2. Fungsi Tutup Gambar Saat Klik Tombol (X)
+        var closeBtn = document.querySelector(".lightbox-modal .close-btn");
+        if (closeBtn) {
+            closeBtn.onclick = function() {
+                document.getElementById("imageModal").style.display = "none";
+            }
+        }
+
+        // 3. Fungsi Tutup Gambar Saat Area Hitam Diklik
+        window.onclick = function(event) {
+            var lightboxModal = document.getElementById("imageModal");
+            if (event.target == lightboxModal) {
+                lightboxModal.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>
